@@ -1,0 +1,26 @@
+api_platform:
+  title: "Symfony 6.2 Starter API"
+  description: "Starter for Symfony 6.2 with api platform 3.1"
+  defaults:
+    # pagination
+    pagination_client_enabled: true
+    pagination_client_items_per_page: true
+    pagination_items_per_page: 10
+  collection:
+    # The default order of results.
+    order: "DESC"
+  mapping:
+    paths: ["%kernel.project_dir%/src/Entity"]
+  patch_formats:
+    json: ["application/merge-patch+json"]
+    jsonapi: ["application/vnd.api+json"]
+  swagger:
+    versions: [3]
+    api_keys:
+      JWT:
+        name: Authorization
+        type: header
+  eager_loading:
+    max_joins: 100
+    fetch_partial: true
+    force_eager: false

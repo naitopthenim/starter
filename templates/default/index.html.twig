@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<style>
+		html,
+		body {
+			margin: 0;
+			overflow: hidden;
+		}
+
+    body {
+      background-color: #111111;
+      color: #ccc
+    }
+
+    .flex {
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+      flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+    h1 {
+      color: #f7f7f7;
+      text-shadow: 1px 1px #ccc;
+    }
+
+    .noise {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      width: 200%;
+      height: 200vh;
+      background: transparent url('{{ asset('static/noise.png') }}') repeat 0 0;
+      background-repeat: repeat;
+      animation: noise .2s infinite;
+      opacity: .9;
+      visibility: visible;
+    }
+
+    @keyframes noise {
+      0% { transform: translate(0,0) }
+      10% { transform: translate(-5%,-5%) }
+      20% { transform: translate(-10%,5%) }
+      30% { transform: translate(5%,-10%) }
+      40% { transform: translate(-5%,15%) }
+      50% { transform: translate(-10%,5%) }
+      60% { transform: translate(15%,0) }
+      70% { transform: translate(0,10%) }
+      80% { transform: translate(-15%,0) }
+      90% { transform: translate(10%,5%) }
+      100% { transform: translate(5%,0) }
+    }
+	</style>
+
+	<div class="noise">
+	</div>
+
+  <div class="flex">
+    <h1>Symfony 6.2 Starter API</h1>
+    <code>{{ version is defined ? version : '' }}</code>
+  </div>
+{% endblock %}
