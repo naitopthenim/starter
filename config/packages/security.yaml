@@ -1,15 +1,24 @@
 security:
   # https://symfony.com/doc/current/security.html#hierarchical-roles
   role_hierarchy:
-    ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    ROLE_SUPER_ADMIN: [ROLE_ADMIN]
     ROLE_ADMIN: ROLE_USER
 
   # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
+    App\Entity\AdminUser:
+      algorithm: auto
   # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
   providers:
     users_in_memory: { memory: null }
+    admin_user_provider:
+      entity:
+        class: App\Entity\AdminUser
+        property: email
+    chain_provider:
+      chain:
+        providers: ["admin_user_provider"]
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -26,10 +35,6 @@ security:
         success_handler: lexik_jwt_authentication.handler.authentication_success
         failure_handler: lexik_jwt_authentication.handler.authentication_failure
       jwt: ~
-      refresh_jwt:
-        check_path: /api/token/refresh
-      logout:
-        path: api_token_invalidate
     main:
       lazy: true
       provider: chain_provider
@@ -50,7 +55,7 @@ security:
         path: ^/api/(login|token/refresh|reset-password|reset-password/reset|reset-password/check-email),
         roles: PUBLIC_ACCESS,
       }
-    - { path: ^/api/v2, roles: PUBLIC_ACCESS } # Allows accessing for public page
+    # - { path: ^/api/v2, roles: PUBLIC_ACCESS } # Allows accessing for public page
     - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/, roles: PUBLIC_ACCESS }
 

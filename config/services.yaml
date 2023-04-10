@@ -23,7 +23,7 @@ services:
   # API Platform JWT
   App\OpenApi\JwtDecorator:
     decorates: "api_platform.openapi.factory"
-  arguments: ["@.inner"]
+    arguments: ["@.inner"]
 
   acme_api.event.jwt_created_listener:
     class: App\EventListener\JWTCreatedListener
