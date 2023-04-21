@@ -13,7 +13,7 @@ class TestController extends AbstractController
     ) {
     }
 
-    #[Route('/api/test', name: 'api_test')]
+    #[Route('/api/test', name: 'test')]
     public function test(): void
     {
         dd('Hello World!');
