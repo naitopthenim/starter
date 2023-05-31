@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
     public function __construct(
         private EntityManagerInterface $em,
+        private Security $security,
     ) {
     }
 
