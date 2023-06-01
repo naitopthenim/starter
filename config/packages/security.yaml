@@ -55,7 +55,7 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     # - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/profile, roles: ROLE_USER }
     - { path: ^/api/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI
     - {
         path: ^/api/(login|token/refresh|reset-password|reset-password/reset|reset-password),
