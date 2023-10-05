@@ -10,8 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class TestController extends AbstractController
 {
     public function __construct(
-        private EntityManagerInterface $em,
-        private Security $security,
+        private readonly EntityManagerInterface $em,
+        private readonly Security $security,
     ) {
     }
 

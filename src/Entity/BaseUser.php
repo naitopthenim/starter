@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\MappedSuperclass]
 #[UniqueEntity(fields: ['email'], message: 'The email has already been taken.')]
-abstract class BaseUser implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface
+abstract class BaseUser implements UserInterface, PasswordAuthenticatedUserInterface, TimestampableInterface, \Stringable
 {
     use TimestampableTrait;
 
@@ -36,7 +36,7 @@ abstract class BaseUser implements UserInterface, PasswordAuthenticatedUserInter
     private ?string $password = null;
 
     #[SerializedName('password')]
-    private $plainPassword;
+    private ?string $plainPassword = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['member_user:item', 'member_user:collection'])]

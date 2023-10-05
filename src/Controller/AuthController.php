@@ -13,9 +13,9 @@ use Vich\UploaderBundle\Storage\StorageInterface;
 class AuthController extends AbstractController
 {
     public function __construct(
-        private StorageInterface $storage,
-        private UrlGeneratorInterface $router,
-        private NormalizerInterface $normalizer,
+        private readonly StorageInterface $storage,
+        private readonly UrlGeneratorInterface $router,
+        private readonly NormalizerInterface $normalizer,
     ) {
     }
 
